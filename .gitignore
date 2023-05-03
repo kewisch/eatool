@@ -1,0 +1,5 @@
+*.json
+__pycache__
+*.egg-info
+.nox
+src/eatool/oauth.py
