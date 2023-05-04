@@ -4,6 +4,8 @@ EA Tool
 A collection of purpose-built tools for the EA team. I enjoy automating things, but once this
 monster gets too big we'll need to see if another team can take this on :-)
 
+The `eatool indico` subcommand makes use of [indico-cli](https://github.com/kewisch/indico-cli).
+
 Examples
 ========
 
