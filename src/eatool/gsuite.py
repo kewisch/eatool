@@ -12,8 +12,8 @@ from googleapiclient.discovery import build
 # Not committing this file right now, it should ideally be part of a config.
 from .oauth import OAUTH_CREDS
 
-class GSuite:
 
+class GSuite:
     SCOPES = [
         "https://www.googleapis.com/auth/calendar",
         "https://www.googleapis.com/auth/spreadsheets",
@@ -85,7 +85,7 @@ class GSuite:
 
         return events_result.get("items", [])
 
-    def sheetcsv(self, file_id, sheetName=None):
+    def sheetcsv(self, file_id, sheetName=None, cellRange=None):
         sheet_metadata = (
             self.sheetsvc.spreadsheets().get(spreadsheetId=file_id).execute()
         )
@@ -107,10 +107,11 @@ class GSuite:
             except KeyError:
                 sheetName = "Sheet1"
 
+        fullRange = f"{sheetName}!{cellRange}" if cellRange else sheetName
         sheet = (
             self.sheetsvc.spreadsheets()
             .values()
-            .get(spreadsheetId=file_id, range=sheetName)
+            .get(spreadsheetId=file_id, range=fullRange)
             .execute()
         )
         rows = filter(None, sheet.get("values", []))

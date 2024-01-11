@@ -69,8 +69,9 @@ def gsuite(ctx):
 @gsuite.command()
 @click.argument("sheetfile")
 @click.argument("sheetname", required=False)
+@click.option("-r", "--range", "cellrange", help="The cell range to output")
 @click.pass_obj
-def sheetcsv(gsuite, sheetfile, sheetname):
+def sheetcsv(gsuite, sheetfile, sheetname, cellrange):
     """Export a Google Sheet as CSV.
 
     Pass either the id of the file, or its URL. If you pass an URL with gid included, it will take
@@ -88,7 +89,9 @@ def sheetcsv(gsuite, sheetfile, sheetname):
         if not sheetname:
             sheetname = match[2]
 
-    click.echo(gsuite.sheetcsv(sheetfile, sheetname), nl=False)
+    click.echo(
+        gsuite.sheetcsv(sheetfile, sheetName=sheetname, cellRange=cellrange), nl=False
+    )
 
 
 @gsuite.command()

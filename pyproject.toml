@@ -1,6 +1,6 @@
 [project]
 name = "eatool"
-version = "1.0.0"
+version = "1.0.1"
 description = "EA Team tool that does things"
 authors = [
   { name = "Philipp Kewisch", email = "code@kewis.ch" }
